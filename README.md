@@ -1,11 +1,13 @@
-# 🐍 HEI Snake Game  
-*(Calculatrice et cahier de leçon autorisés)*  
+# 🐍 HEI Snake Game
+*(Calculatrice et cahier de leçon autorisés)*
+
+ fait par Sullivan(STD22048) et Nathanaël(STD22005)
 
 ## 🎯 Objectifs
 
 Développer un mini-moteur du **Snake Game** en console, en appliquant les principes de **Clean Code** :
 
-- **DRY** 
+- **DRY**
 - **KISS**
 - **YAGNI**
 - **Naming**
@@ -141,7 +143,7 @@ Le joueur peut changer la direction du serpent via les **touches suivantes** :
 | `A`    | Gauche    |
 | `D`    | Droite    |
 
-  
+
 Si la lecture de clavier en temps réel est complexe à gérer dans votre environnement, voici deux alternatives acceptables :
 
 - **Entrée manuelle** : demandez la direction à chaque tick (`input()` en Python, `Scanner` en Java)
