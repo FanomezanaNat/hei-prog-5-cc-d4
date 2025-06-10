@@ -8,7 +8,7 @@ import java.util.Random;
 
 @AllArgsConstructor
 public class FoodFactory {
-    private static Random random = new Random();
+    private final static Random random = new Random();
 
     public static Food makeFood(Snake snake, int height, int width) {
         Point coordinate;

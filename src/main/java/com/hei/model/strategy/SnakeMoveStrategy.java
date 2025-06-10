@@ -6,7 +6,7 @@ import static com.hei.model.Direction.*;
 
 
 public class SnakeMoveStrategy implements MoveStrategy {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public String computeNextPosition(String direction) {

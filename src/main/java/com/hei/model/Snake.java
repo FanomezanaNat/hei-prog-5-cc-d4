@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 @Data
 
@@ -14,7 +15,7 @@ public class Snake {
     private boolean grow;
 
     @Builder
-    public Snake(Direction direction, Point position, boolean grow) {
+    public Snake(Direction direction, Point position) {
         this.direction = direction;
         this.position = position;
         this.grow = false;
@@ -27,7 +28,7 @@ public class Snake {
 
     public Point peekNextHead() {
         Point head = body.peekLast();
-        return new Point(head.getX() + direction.dx, head.getY() + direction.dy);
+        return new Point(Objects.requireNonNull(head).getX() + direction.dx, head.getY() + direction.dy);
     }
 
     public Point move() {
@@ -43,7 +44,7 @@ public class Snake {
 
     public boolean hitsWall(int width, int height) {
         Point head = body.peekLast();
-        return head.getX() < 0 || head.getX() >= width || head.getY() < 0 || head.getY() >= height;
+        return Objects.requireNonNull(head).getX() < 0 || head.getX() >= width || head.getY() < 0 || head.getY() >= height;
     }
 
     public boolean hitsSelf() {

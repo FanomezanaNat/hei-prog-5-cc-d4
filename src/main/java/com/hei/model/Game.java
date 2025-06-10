@@ -3,12 +3,13 @@ package com.hei.model;
 import com.hei.model.factory.FoodFactory;
 import com.hei.model.state.GameState;
 import com.hei.model.state.MenuState;
+import com.hei.model.strategy.SnakeMoveStrategy;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Scanner;
 
-import static com.hei.model.Direction.*;
+import static com.hei.model.Direction.RIGHT;
 import static java.util.Arrays.fill;
 
 @Getter
@@ -24,6 +25,7 @@ public class Game {
     private GameState state;
 
     private final Scanner scanner = new Scanner(System.in);
+    private final SnakeMoveStrategy snakeMoveStrategy = new SnakeMoveStrategy();
 
     public Game() {
         this.state = new MenuState();
@@ -39,7 +41,6 @@ public class Game {
         snake = Snake.builder()
                 .direction(RIGHT)
                 .position(new Point(4, 5))
-                .grow(false)
                 .build();
 
         positionFood = FoodFactory.makeFood(snake, HEIGHT, WIDTH).getPosition();
@@ -51,9 +52,9 @@ public class Game {
         for (int y = 0; y < HEIGHT; y++)
             fill(board[y], '.');
 
-        for (Point p : snake.getBody()) {
-            int x = p.getX();
-            int y = p.getY();
+        for (Point point : snake.getBody()) {
+            var x = point.getX();
+            var y = point.getY();
             if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
                 board[y][x] = '*';
         }
@@ -67,19 +68,11 @@ public class Game {
     }
 
     public void update() {
-        System.out.print("Direction (WASD) : ");
-        String in = scanner.nextLine().toUpperCase();
+        var snakeMovement = snakeMoveStrategy.computeNextPosition(snake.getDirection().toString());
+        var direction = Direction.valueOf(snakeMovement);
 
-        Direction newDir = switch (in) {
-            case "W" -> UP;
-            case "S" -> DOWN;
-            case "A" -> LEFT;
-            case "D" -> RIGHT;
-            default -> snake.getDirection();
-        };
-
-        if (!newDir.isOpposite(snake.getDirection()))
-            snake.setDirection(newDir);
+        if (!direction.isOpposite(snake.getDirection()))
+            snake.setDirection(direction);
 
         Point nextHead = snake.move();
 
