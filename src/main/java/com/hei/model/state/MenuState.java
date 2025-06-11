@@ -4,12 +4,15 @@ import com.hei.model.Game;
 
 import java.util.Scanner;
 
+import static java.lang.System.in;
+import static java.lang.System.out;
+
 public class MenuState implements GameState {
     @Override
     public void handler(Game game) {
-        System.out.println("=== MENU ===");
-        System.out.println("Appuyez sur 'Entrée' pour commencer...");
-        Scanner scanner = new Scanner(System.in);
+        out.println("=== MENU ===");
+        out.println("Welcome ! Click 'Enter' touch to begin...");
+        Scanner scanner = new Scanner(in);
         scanner.nextLine();
         game.initGame();
         game.setState(new RunningState());

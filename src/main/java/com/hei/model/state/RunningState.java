@@ -3,6 +3,9 @@ package com.hei.model.state;
 
 import com.hei.model.Game;
 
+import static com.hei.model.Game.HEIGHT;
+import static com.hei.model.Game.WIDTH;
+
 public class RunningState implements GameState {
 
     @Override
@@ -10,7 +13,7 @@ public class RunningState implements GameState {
         game.render();
         game.update();
 
-        if (game.getSnake().hitsWall(Game.WIDTH, Game.HEIGHT) || game.getSnake().hitsSelf()) {
+        if (game.getSnake().hitsWall(WIDTH, HEIGHT) || game.getSnake().hitsSelf()) {
             game.setState(new GameOverState());
         }
     }

@@ -4,13 +4,16 @@ import com.hei.model.Game;
 
 import java.util.Scanner;
 
+import static java.lang.System.in;
+import static java.lang.System.out;
+
 public class GameOverState implements GameState {
     @Override
     public void handler(Game game) {
-        System.out.println("=== GAME OVER ===");
-        System.out.println("Score final : " + game.getScore());
-        System.out.println("Appuyez sur 'Entrée' pour quitter...");
-        Scanner scanner = new Scanner(System.in);
+        out.println("=== GAME OVER ===");
+        out.println("Final score : " + game.getScore());
+        out.println("Touch on any touch to quit ...");
+        Scanner scanner = new Scanner(in);
         scanner.nextLine();
         System.exit(0);
     }

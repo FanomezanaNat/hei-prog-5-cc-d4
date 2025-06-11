@@ -10,6 +10,8 @@ import lombok.Setter;
 import java.util.Scanner;
 
 import static com.hei.model.Direction.RIGHT;
+import static java.lang.System.in;
+import static java.lang.System.out;
 import static java.util.Arrays.fill;
 
 @Getter
@@ -19,12 +21,13 @@ public class Game {
     public static final int WIDTH = 10;
     public static final int HEIGHT = 10;
 
+
     private Snake snake;
     private Point positionFood;
     private int score;
     private GameState state;
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(in);
     private final SnakeMoveStrategy snakeMoveStrategy = new SnakeMoveStrategy();
 
     public Game() {
@@ -61,10 +64,10 @@ public class Game {
         board[positionFood.getY()][positionFood.getX()] = '@';
 
         for (char[] row : board) {
-            for (char c : row) System.out.print(c + " ");
-            System.out.println();
+            for (char c : row) out.print(c + " ");
+            out.println();
         }
-        System.out.println("Score : " + score);
+        out.println("Score : " + score);
     }
 
     public void update() {
